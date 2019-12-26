@@ -11,12 +11,14 @@ public class Stock {
     private String date;
     private String name;
     private int quantity;
+    private String pack;
     private int priceUnit;
     int totalPrice = 0;
 
-    public Stock(String name, int quantity, int priceUnit, int totalPrice){
+    public Stock(String name, int quantity, String pack, int priceUnit, int totalPrice){
         this.name = name;
         this.quantity = quantity;
+        this.pack = pack;
         this.priceUnit = priceUnit;
         this.totalPrice = totalPrice;
     }
@@ -53,6 +55,14 @@ public class Stock {
         this.quantity = quantity;
     }
 
+    public String getPack() {
+        return pack;
+    }
+
+    public void setPack(String pack) {
+        this.pack = pack;
+    }
+
     public int getPriceUnit() {
         return priceUnit;
     }
@@ -68,10 +78,11 @@ public class Stock {
 
     public void save(){
         try(Connection con = DB.sql2o.open()){
-            String sql = "INSERT INTO stock(date, name, quantity, priceunit, totalprice) VALUES(now(), :name, :quantity, :priceUnit, :totalPrice);";
+            String sql = "INSERT INTO stock(date, name, quantity, pack, priceunit, totalprice) VALUES(now(), :name, :quantity, :pack, :priceUnit, :totalPrice);";
             con.createQuery(sql)
                     .addParameter("name", this.name)
                     .addParameter("quantity", this.quantity)
+                    .addParameter("pack", this.pack)
                     .addParameter("priceUnit", this.priceUnit)
                     .addParameter("totalPrice", this.totalPrice)
                     .executeUpdate();
