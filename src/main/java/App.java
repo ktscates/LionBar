@@ -26,11 +26,6 @@ public class App {
             return new ModelAndView(model, "stock.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/stocks", (request, response) -> {
-            model.put("stock", Stock.all());
-            return new ModelAndView(model, "stocks.hbs");
-        }, new HandlebarsTemplateEngine());
-
         post("/stock", (request, response) -> {
             String name= request.queryParams("name");
             int quantity = Integer.parseInt(request.queryParams("quantity"));
@@ -46,13 +41,18 @@ public class App {
             newStock.save();
             model.put("stock", Stock.all());
             model.put("StockClass", Stock.class);
-            return new ModelAndView(model, "stocks.hbs");
+            return new ModelAndView(model, "storage.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/storage", (request, response) -> {
+            model.put("stock", Stock.all());
+            return new ModelAndView(model, "storage.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/delete/:id", (req, res) -> {
             int delete = Integer.parseInt(req.params("id"));
             Stock.deleteById(delete);
-            res.redirect("/stock");
+            res.redirect("/storage");
             return null;
         }, new HandlebarsTemplateEngine());
     }
