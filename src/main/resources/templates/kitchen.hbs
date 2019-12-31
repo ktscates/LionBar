@@ -1,0 +1,38 @@
+{{#partial "content"}}
+
+    <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Plats vendu en cuisine</h1>
+    <hr>
+
+    <h3>List des Plats</h3>
+
+    <table class="table">
+
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Nom du Plat</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix Unitaire</th>
+            <th scope="col">Prix Total</th>
+        </tr>
+
+        {{#each cuisine}}
+
+            <tr>
+                <td>{{date}}</td>
+                <td>{{menu}}</td>
+                <td>{{numberOfMenu}} {{accomp}}</td>
+                <td>{{unitPrice}}Fbu</td>
+                <td>{{priceTotal}}Fbu</td>
+                <td><a class="btn btn-outline-danger" href="/delete/{{id}}">Supprimer</a></td>
+            </tr>
+
+
+        {{/each}}
+
+    </table>
+
+
+
+{{/partial}}
+
+{{>layout.hbs}}

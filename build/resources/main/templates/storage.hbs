@@ -1,35 +1,39 @@
 {{#partial "content"}}
 
-    <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Stockage</h1>
-    <hr>
 
-        <h3>List des produits</h3>
+            <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Stockage</h1>
+            <hr>
 
-        <table class="table">
+                <h3>List des produits</h3>
 
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Nom du produit</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Prix Unitaire</th>
-                <th scope="col">Prix Total</th>
-            </tr>
+                <table class="table">
 
-            {{#each stock}}
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Nom du produit</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix Unitaire</th>
+                        <th scope="col">Prix Total</th>
+                    </tr>
 
-                <tr>
-                    <td>{{date}}</td>
-                    <td>{{name}}</td>
-                    <td>{{quantity}}{{pack}}</td>
-                    <td>{{priceUnit}}Fbu</td>
-                    <td>{{totalPrice}}Fbu</td>
-                    <td><a class="btn btn-outline-danger" href="/delete/{{id}}">Supprimer</a></td>
-                </tr>
+                    {{#each stock}}
+
+                        <tr>
+                            <td>{{date}}</td>
+                            <td>{{name}}</td>
+                            <td>{{quantity}}{{pack}}</td>
+                            <td>{{priceUnit}}Fbu</td>
+                            <td>{{totalPrice}}Fbu</td>
+                            <td><a class="btn btn-outline-danger" href="/delete/{{id}}">Supprimer</a></td>
+                        </tr>
 
 
-            {{/each}}
+                    {{/each}}
 
-        </table>
+                </table>
+
+        </div>
+    </div>
 
 
 {{/partial}}

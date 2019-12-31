@@ -1,3 +1,4 @@
+import models.Cuisine;
 import models.Stock;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -27,7 +28,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         post("/stock", (request, response) -> {
-            String name= request.queryParams("name");
+            String name = request.queryParams("name");
             int quantity = Integer.parseInt(request.queryParams("quantity"));
             String pack = request.queryParams("pack");
             int priceUnit = Integer.parseInt(request.queryParams("priceUnit"));
@@ -53,6 +54,41 @@ public class App {
             int delete = Integer.parseInt(req.params("id"));
             Stock.deleteById(delete);
             res.redirect("/storage");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/cuisine", (request, response) -> {
+            model.put("cuisine", Cuisine.all());
+            return new ModelAndView(model, "cuisine.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/cuisine", (request, response) -> {
+            String menu = request.queryParams("menu");
+            int numberOfMenu = Integer.parseInt(request.queryParams("numberOfMenu"));
+            String accomp = request.queryParams("accomp");
+            int unitPrice = Integer.parseInt(request.queryParams("unitPrice"));
+            int priceTotal = numberOfMenu * unitPrice;
+            Cuisine newCuisine = new Cuisine(menu, numberOfMenu, accomp, unitPrice, priceTotal);
+            model.put("Menu", newCuisine.getMenu());
+            model.put("numberOfMenu", newCuisine.getNumberOfMenu());
+            model.put("accomp", newCuisine.getAccomp());
+            model.put("unitPrice", newCuisine.getUnitPrice());
+            model.put("priceTotal", newCuisine.getPriceTotal());
+            newCuisine.save();
+            model.put("cuisine", Cuisine.all());
+            model.put("CusineClass", Cuisine.class);
+            return new ModelAndView(model, "kitchen.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/kitchen", (request, response) -> {
+            model.put("cuisine", Cuisine.all());
+            return new ModelAndView(model, "kitchen.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/delete/:id", (req, res) -> {
+            int delete = Integer.parseInt(req.params("id"));
+            Cuisine.deleteById(delete);
+            res.redirect("/kitchen");
             return null;
         }, new HandlebarsTemplateEngine());
     }

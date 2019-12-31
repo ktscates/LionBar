@@ -1,0 +1,47 @@
+{{#partial "content"}}
+
+    <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Cuisine</h1>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <form action="/cuisine" method="post" >
+
+                <div class="form-group">
+                    <label>Nom du plat</label>
+                    <input type="text" name="menu" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre de plat commandé</label>
+                    <input type="text" name="numberOfMenu" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Accompagnement</label>
+                    <select id="pack" name="accomp" class="form-control">
+                        <option value="Choisissez l'accompagnement">Choisissez l'accompagnement...</option>
+                        <option value="Simple">Simple</option>
+                        <option value="Accompagné">Accompagné</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Prix Unitaire</label>
+                    <input type="text" name="unitPrice" class="form-control" required>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+
+            </form>
+
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}
