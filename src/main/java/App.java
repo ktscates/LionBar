@@ -1,3 +1,4 @@
+import models.Bar;
 import models.Cuisine;
 import models.Stock;
 import spark.ModelAndView;
@@ -85,10 +86,43 @@ public class App {
             return new ModelAndView(model, "kitchen.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/delete/:id", (req, res) -> {
+        get("/deleteCuisine/:id", (req, res) -> {
             int delete = Integer.parseInt(req.params("id"));
             Cuisine.deleteById(delete);
             res.redirect("/kitchen");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/boisson", (request, response) -> {
+            model.put("bar", Bar.all());
+            return new ModelAndView(model, "boisson.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/boisson", (request, response) -> {
+            String drink = request.queryParams("drink");
+            int numberOfDrink = Integer.parseInt(request.queryParams("numberOfDrink"));
+            int prixUnit = Integer.parseInt(request.queryParams("prixUnit"));
+            int prixTotal = numberOfDrink * prixUnit;
+            Bar newBar = new Bar(drink, numberOfDrink, prixUnit, prixTotal);
+            model.put("drink", newBar.getDrink());
+            model.put("numberOfDrink", newBar.getNumberOfDrink());
+            model.put("prixUnit", newBar.getPrixUnit());
+            model.put("prixTotal", newBar.getPrixTotal());
+            newBar.save();
+            model.put("bar", Bar.all());
+            model.put("BarClass", Bar.class);
+            return new ModelAndView(model, "bar.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/bar", (request, response) -> {
+            model.put("bar", Bar.all());
+            return new ModelAndView(model, "bar.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/deleteBar/:id", (req, res) -> {
+            int delete = Integer.parseInt(req.params("id"));
+            Bar.deleteById(delete);
+            res.redirect("/bar");
             return null;
         }, new HandlebarsTemplateEngine());
     }

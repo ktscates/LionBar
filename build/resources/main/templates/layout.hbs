@@ -15,9 +15,10 @@
          table{
            border:1px solid black;
         }
-        .row{
+        .container{
            margin-top:20px;
-           background-color:rgba(255,255,255,0.7);
+           background-color:rgba(255,255,255,0.8);
+           padding-bottom:20px;
         }
         .col-md-3{
            margin-top:80px;
@@ -42,10 +43,13 @@
     <div class="row">
         <div class="col-md-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="/stock" role="tab" aria-controls="v-pills-home" aria-selected="true">Enregistrer les produits à stocker</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="/storage" role="tab" aria-controls="v-pills-profile" aria-selected="false">Liste des Produits enregistrer en stock</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="/cuisine" role="tab" aria-controls="v-pills-messages" aria-selected="false">Enregistrer les plat de cuisine vendu</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="/kitchen" role="tab" aria-controls="v-pills-settings" aria-selected="false">Listes des plats vendus</a>
+                <a class="nav-link" id="v-pills-welcome-tab" data-toggle="pill" href="/" role="tab" aria-controls="v-pills-welcome" aria-selected="true">Acceuil</a>
+                <a class="nav-link" id="v-pills-stock-tab" data-toggle="pill" href="/stock" role="tab" aria-controls="v-pills-stock" aria-selected="false">Enregistrer les produits à stocker</a>
+                <a class="nav-link" id="v-pills-storage-tab" data-toggle="pill" href="/storage" role="tab" aria-controls="v-pills-storage" aria-selected="false">Liste des Produits enregistrer en stock</a>
+                <a class="nav-link" id="v-pills-cuisine-tab" data-toggle="pill" href="/cuisine" role="tab" aria-controls="v-pills-cuisine" aria-selected="false">Enregistrer les plat de cuisine vendus</a>
+                <a class="nav-link" id="v-pills-kitchen-tab" data-toggle="pill" href="/kitchen" role="tab" aria-controls="v-pills-kitchen" aria-selected="false">Listes des plats vendus</a>
+                <a class="nav-link" id="v-pills-cuisine-tab" data-toggle="pill" href="/boisson" role="tab" aria-controls="v-pills-boisson" aria-selected="false">Enregistrer les boissons vendus</a>
+                <a class="nav-link" id="v-pills-kitchen-tab" data-toggle="pill" href="/bar" role="tab" aria-controls="v-pills-bar" aria-selected="false">Listes des boissons vendus</a>
             </div>
         </div>
         <div class="col-md-9">
@@ -62,6 +66,7 @@
     <div class="licence">
         <p> <strong> Cates NSENGIYUMVA | Copyright &copy; 2019 All rights reserved </strong></p>
     </div>
+
     </body>
     </html>
 {{/block}}
