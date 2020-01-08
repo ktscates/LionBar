@@ -1,17 +1,17 @@
 {{#partial "content"}}
 
-    <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Stock</h1>
+    <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Stockage D'aliment</h1>
     <hr>
 
     <div class="row">
 
         <div class="col-md-6">
 
-            <form action="/stock" method="post" >
+            <form action="/stockFood" method="post" >
 
                 <div class="form-group">
                     <label>Nom du produit</label>
-                    <input type="text" name="name" class="form-control" required>
+                    <input type="text" name="foodName" class="form-control" required>
                 </div>
 
                 <div class="form-group">
@@ -26,13 +26,12 @@
                         <option value="kg">kg</option>
                         <option value="Piece">Piece</option>
                         <option value="Paquet">Paquet</option>
-                        <option value="Casier">Casier</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Prix Unitaire</label>
-                    <input type="text" name="priceUnit" class="form-control" required>
+                    <input type="text" name="priceUnitFood" class="form-control" required>
                 </div>
 
 

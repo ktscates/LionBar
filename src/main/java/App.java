@@ -1,6 +1,7 @@
 import models.Bar;
 import models.Cuisine;
-import models.Stock;
+import models.StockDrink;
+import models.StockFood;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -19,42 +20,77 @@ public class App {
         String layout = "templates/layout.hbs";
 
         get("/", (request, response) -> {
-            model.put("stock", Stock.all());
+            model.put("food", StockFood.all());
             return new ModelAndView(model, "welcome.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/stock", (request, response) -> {
-            model.put("stock", Stock.all());
-            return new ModelAndView(model, "stock.hbs");
+        get("/stockFood", (request, response) -> {
+            model.put("food", StockFood.all());
+            return new ModelAndView(model, "stockFood.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/stock", (request, response) -> {
-            String name = request.queryParams("name");
+        post("/stockFood", (request, response) -> {
+            String foodName = request.queryParams("foodName");
             int quantity = Integer.parseInt(request.queryParams("quantity"));
             String pack = request.queryParams("pack");
-            int priceUnit = Integer.parseInt(request.queryParams("priceUnit"));
+            int priceUnit = Integer.parseInt(request.queryParams("priceUnitFood"));
             int totalPrice = quantity * priceUnit;
-            Stock newStock = new Stock(name, quantity, pack, priceUnit, totalPrice);
-            model.put("name", newStock.getName());
-            model.put("quantity", newStock.getQuantity());
-            model.put("pack", newStock.getPack());
-            model.put("priceUnit", newStock.getPriceUnit());
-            model.put("totalPrice", newStock.getTotalPrice());
-            newStock.save();
-            model.put("stock", Stock.all());
-            model.put("StockClass", Stock.class);
-            return new ModelAndView(model, "storage.hbs");
+            StockFood newStockFood = new StockFood(foodName, quantity, pack, priceUnit, totalPrice);
+            model.put("foodName", newStockFood.getFoodName());
+            model.put("quantity", newStockFood.getQuantity());
+            model.put("pack", newStockFood.getPack());
+            model.put("priceUnitFood", newStockFood.getPriceUnitFood());
+            model.put("totalPrice", newStockFood.getTotalPrice());
+            newStockFood.save();
+            model.put("food", StockFood.all());
+            model.put("StockClass", StockFood.class);
+            return new ModelAndView(model, "storageFood.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/storage", (request, response) -> {
-            model.put("stock", Stock.all());
-            return new ModelAndView(model, "storage.hbs");
+        get("/storageFood", (request, response) -> {
+            model.put("food", StockFood.all());
+            return new ModelAndView(model, "storageFood.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/delete/:id", (req, res) -> {
             int delete = Integer.parseInt(req.params("id"));
-            Stock.deleteById(delete);
-            res.redirect("/storage");
+            StockFood.deleteById(delete);
+            res.redirect("/storageFood");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/stockDrink", (request, response) -> {
+            model.put("drink", StockFood.all());
+            return new ModelAndView(model, "stockDrink.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/stockDrink", (request, response) -> {
+            String drinkName = request.queryParams("drinkName");
+            int quantity = Integer.parseInt(request.queryParams("quantity"));
+            String packDrink = request.queryParams("packDrink");
+            int priceUnitDrink = Integer.parseInt(request.queryParams("priceUnitDrink"));
+            int totalPriceDrink = quantity * priceUnitDrink;
+            StockDrink newStockDrink = new StockDrink(drinkName, quantity, packDrink, priceUnitDrink, totalPriceDrink);
+            model.put("drinkName", newStockDrink.getDrinkName());
+            model.put("quantity", newStockDrink.getQuantity());
+            model.put("packDrink", newStockDrink.getPackDrink());
+            model.put("priceUnitDrink", newStockDrink.getPriceUnitDrink());
+            model.put("totalPriceDrink", newStockDrink.getTotalPriceDrink());
+            newStockDrink.save();
+            model.put("drink", StockDrink.all());
+            model.put("StockDrinkClass", StockDrink.class);
+            return new ModelAndView(model, "storageDrink.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/storageDrink", (request, response) -> {
+            model.put("drink", StockDrink.all());
+            return new ModelAndView(model, "storageDrink.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/deleteDrink/:id", (req, res) -> {
+            int delete = Integer.parseInt(req.params("id"));
+            StockDrink.deleteById(delete);
+            res.redirect("/storageDrink");
             return null;
         }, new HandlebarsTemplateEngine());
 

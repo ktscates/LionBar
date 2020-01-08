@@ -1,12 +1,12 @@
 {{#partial "content"}}
 
 
-            <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Stockage</h1>
+            <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Aliments Stockés</h1>
             <hr>
 
                 <h3>List des produits</h3>
 
-                <table class="table">
+                <table border="4" class="table">
 
                     <tr>
                         <th scope="col">Date</th>
@@ -14,15 +14,16 @@
                         <th scope="col">Quantité</th>
                         <th scope="col">Prix Unitaire</th>
                         <th scope="col">Prix Total</th>
+                        <th scope="col"></th>
                     </tr>
 
-                    {{#each stock}}
+                    {{#each food}}
 
                         <tr>
                             <td>{{date}}</td>
-                            <td>{{name}}</td>
+                            <td>{{foodName}}</td>
                             <td>{{quantity}}{{pack}}</td>
-                            <td>{{priceUnit}}Fbu</td>
+                            <td>{{priceUnitFood}}Fbu</td>
                             <td>{{totalPrice}}Fbu</td>
                             <td><a class="btn btn-outline-danger" href="/delete/{{id}}">Supprimer</a></td>
                         </tr>

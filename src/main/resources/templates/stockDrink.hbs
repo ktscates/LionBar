@@ -1,0 +1,49 @@
+{{#partial "content"}}
+
+    <h1 style="text-align:center; font-weight:bolder;">Lion Bar Restaurant - Stockage De Boisson</h1>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <form action="/stockDrink" method="post" >
+
+                <div class="form-group">
+                    <label>Nom du produit</label>
+                    <input type="text" name="drinkName" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantité</label>
+                    <input type="text" name="quantity" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Paquetage</label>
+                    <select id="pack" name="packDrink" class="form-control">
+                        <option value="Choisissez le paquetage">Choisissez le paquetage...</option>
+                        <option value="Casier">Casier</option>
+                        <option value="Piece">Piece</option>
+                        <option value="Paquet">Paquet</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Prix Unitaire</label>
+                    <input type="text" name="priceUnitDrink" class="form-control" required>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

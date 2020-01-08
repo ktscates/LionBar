@@ -5,21 +5,21 @@ import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-public class Stock {
+public class StockFood {
 
     private int id;
     private String date;
-    private String name;
+    private String foodName;
     private int quantity;
     private String pack;
-    private int priceUnit;
+    private int priceUnitFood;
     int totalPrice = 0;
 
-    public Stock(String name, int quantity, String pack, int priceUnit, int totalPrice){
-        this.name = name;
+    public StockFood(String foodName, int quantity, String pack, int priceUnitFood, int totalPrice){
+        this.foodName = foodName;
         this.quantity = quantity;
         this.pack = pack;
-        this.priceUnit = priceUnit;
+        this.priceUnitFood = priceUnitFood;
         this.totalPrice = totalPrice;
     }
 
@@ -39,12 +39,12 @@ public class Stock {
         this.date = date;
     }
 
-    public String getName() {
-        return name;
+    public String getFoodName() {
+        return foodName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public int getQuantity() {
@@ -63,42 +63,42 @@ public class Stock {
         this.pack = pack;
     }
 
-    public int getPriceUnit() {
-        return priceUnit;
+    public int getPriceUnitFood() {
+        return priceUnitFood;
     }
 
-    public void setPriceUnit(int priceUnit) {
-        this.priceUnit = priceUnit;
+    public void setPriceUnitFood(int priceUnitFood) {
+        this.priceUnitFood = priceUnitFood;
     }
 
     public int getTotalPrice(){
-        totalPrice = quantity * priceUnit;
+        totalPrice = quantity * priceUnitFood;
         return totalPrice;
     }
 
     public void save(){
         try(Connection con = DB.sql2o.open()){
-            String sql = "INSERT INTO stock(date, name, quantity, pack, priceunit, totalprice) VALUES(now(), :name, :quantity, :pack, :priceUnit, :totalPrice);";
+            String sql = "INSERT INTO food(date, foodname, quantity, pack, priceunitfood, totalprice) VALUES(now(), :foodName, :quantity, :pack, :priceUnitFood, :totalPrice);";
             con.createQuery(sql)
-                    .addParameter("name", this.name)
+                    .addParameter("foodName", this.foodName)
                     .addParameter("quantity", this.quantity)
                     .addParameter("pack", this.pack)
-                    .addParameter("priceUnit", this.priceUnit)
+                    .addParameter("priceUnitFood", this.priceUnitFood)
                     .addParameter("totalPrice", this.totalPrice)
                     .executeUpdate();
         }
     }
 
-    public static List<Stock> all(){
-        String sql = "SELECT * FROM stock";
+    public static List<StockFood> all(){
+        String sql = "SELECT * FROM food";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql)
-                    .executeAndFetch(Stock.class);
+                    .executeAndFetch(StockFood.class);
         }
     }
 
     public static void deleteById(int id) {
-        String sql = "DELETE from stock WHERE id=:id";
+        String sql = "DELETE from food WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
