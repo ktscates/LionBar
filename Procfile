@@ -1,1 +1,1 @@
-web: ./build/install/lionBar/bin/lionBar
+web: ./build/install/lionbarsys/bin/lionbarsys

@@ -21,7 +21,7 @@ dependencies {
     compile group: 'com.h2database', name: 'h2', version: '1.4.191'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 
-    applicationName = "lionBar"
+    applicationName = "lionbarsys"
     mainClassName = 'App'
     task stage(dependsOn: ['clean', 'installDist'])
 }
